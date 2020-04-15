@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld msg="这个是首页"/>
+    这个是首页
   </div>
 </template>
 
