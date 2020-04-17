@@ -23,19 +23,20 @@ Vue.use(VueRouter)
   },
 ]
 
-// router.beforeEach((to, from,next)=>{
-//   if(to == '/'){
-//     alert('您还没有登录，请先登录')
-//     next('/Login')
-//   }else{
-//     next()
-//   }
-// })
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from,next)=>{
+  let user = localStorage.getItem('user')
+  if( !user && to.path == '/'){
+    next('/Login')
+  }else{
+    next()
+  }
+})
+
 
 export default router
