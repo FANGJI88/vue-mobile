@@ -31,7 +31,7 @@ export default {
           localStorage.removeItem('user')
           alert('token过期，请重新登陆')
           _this.$router.push("/Login")
-        }, 50000);
+        }, 5000);
       }
     }
   }
