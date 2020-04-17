@@ -9,11 +9,13 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
+    meta:{ title: '首页', needLogin: true},
     component: Home
   },
   {
     path: '/MyCenter',
     name: 'MyCenter',
+    meta: { title: '我的', needLogin: true},
     component: () => import(/* webpackChunkName: "about" */ '../views/MyCenter/MyCenter.vue')
   },
   {
@@ -30,9 +32,23 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from,next)=>{
-  let user = localStorage.getItem('user')
-  if( !user && to.path == '/'){
-    next('/Login')
+  
+  if(to.matched.some( res =>{ return res.meta.needLogin})){   //判断是否需要登陆验证
+    let user = localStorage.getItem('user')
+
+    if(!user){ //判断是否有用户信息
+      next('/Login')
+
+    }else{ 
+      let tokenTime = localStorage.getItem('overTime')
+      setTimeout(() => {  //判断一下是否过期，超过时间就清除缓存
+
+        localStorage.removeItem('user')
+        alert('token过期了，请重新登录')
+        next('/Login')
+
+      }, tokenTime);
+    }
   }else{
     next()
   }
