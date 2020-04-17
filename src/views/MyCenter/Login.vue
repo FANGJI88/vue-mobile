@@ -27,11 +27,11 @@ export default {
       }
 
       if(localStorage.getItem('user')){ //模拟token时间限制，超过时间就清除缓存
-        setInterval(() => {
+        setTimeout(() => {
           localStorage.removeItem('user')
           alert('token过期，请重新登陆')
           _this.$router.push("/Login")
-        }, 5000);
+        }, 100000);
       }
     }
   }
