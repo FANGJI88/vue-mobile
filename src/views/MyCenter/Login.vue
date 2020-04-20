@@ -26,8 +26,10 @@ export default {
       }else{
         alert('请输入用户名和密码')
       }
-
-      
+      let tokenTime = localStorage.getItem('overTime')
+       setTimeout(() => {  //判断一下是否过期，超过时间就清除缓存
+        localStorage.removeItem('user')
+      }, tokenTime);
     }
   }
 }

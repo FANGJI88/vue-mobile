@@ -9,7 +9,7 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    meta:{ title: '首页', needLogin: true},
+    meta:{ title: '首页', needLogin: false},
     component: Home
   },
   {
@@ -32,22 +32,21 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from,next)=>{
-  
+
   if(to.matched.some( res =>{ return res.meta.needLogin})){   //判断是否需要登陆验证
     let user = localStorage.getItem('user')
+    let tokenTime = localStorage.getItem('overTime')
 
-    if(!user){ //判断是否有用户信息
+    if(!user && !tokenTime){ //判断是否有用户信息,且是第一次登陆
       next('/Login')
-
+      
     }else{ 
-      let tokenTime = localStorage.getItem('overTime')
-      setTimeout(() => {  //判断一下是否过期，超过时间就清除缓存
-
-        localStorage.removeItem('user')
+      if(tokenTime && !user){   //判断一下是否过期
         alert('token过期了，请重新登录')
         next('/Login')
-
-      }, tokenTime);
+      }else{
+        next()
+      }
     }
   }else{
     next()
