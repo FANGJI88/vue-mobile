@@ -12,16 +12,44 @@ Vue.use(VueRouter)
     meta:{ title: '首页', needLogin: false},
     component: Home
   },
+  //我的
   {
     path: '/MyCenter',
     name: 'MyCenter',
     meta: { title: '我的', needLogin: true},
     component: () => import(/* webpackChunkName: "about" */ '../views/MyCenter/MyCenter.vue')
   },
+  //发现
+  {
+    path: '/Find',
+    name: 'Find',
+    meta: { title: '发现', needLogin: false},
+    component: () => import(/* webpackChunkName: "about" */ '../views/Find/FindIndex.vue')
+  },
+  //订单
+  {
+    path: '/Order',
+    name: 'Order',
+    meta: { title: '订单', needLogin: true},
+    component: () => import(/* webpackChunkName: "about" */ '../views/Order/OrderIndex.vue')
+  },
+  //登录
   {
     path: '/Login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "about" */ '../views/MyCenter/Login.vue')
+  },
+  //头部公共组件
+  {
+    path: '/Navigation',
+    name: 'Navigation',
+    component: () => import(/* webpackChunkName: "about" */ '../components/Navigation.vue')
+  },
+  //底部公共组件
+  {
+    path: '/Menu',
+    name: 'Menu',
+    component: () => import(/* webpackChunkName: "about" */ '../components/Menu.vue')
   },
 ]
 

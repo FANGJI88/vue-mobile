@@ -1,0 +1,91 @@
+html {
+	/* font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif, \5b8b\4f53; */
+	font-family: 'Avenir', Helvetica, Arial, sans-serif;
+	-webkit-text-size-adjust: 100%; 			
+	-webkit-tap-highlight-color: transparent; 	
+	background: #fff;
+}
+body {
+	overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; 
+}
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+a {
+	color: #333;
+	text-decoration: none;
+}
+i,em {
+	font-style: normal;
+}
+img {
+	border: 0;
+	display: block;
+	vertical-align: middle;
+	width: 100%;
+	height: 100%;
+}
+input {
+	-webkit-appearance: none;
+	outline: none;
+	border: none;
+}
+li, ol {
+	list-style: none;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 0;
+	clear: both;
+}
+.por {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.poa {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pof {
+  position: fixed;
+  left: 0;
+}
+.container{
+  width:1200px;
+  min-height:1000px;
+  margin:20px auto 0;
+  background: #fff;
+  margin-top:100px;
+  margin-bottom: 18px;
+}
+.flex{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.ellipsis{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap
+}
+.ellipsisLine{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
