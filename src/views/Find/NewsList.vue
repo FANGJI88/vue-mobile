@@ -1,7 +1,7 @@
 <template>
   <div class="course">
     <Navigation title="新闻公告"></Navigation>
-    新闻
+    <a :href="'tel:'+ phone">打电话</a>
   </div>
 </template>
 <script>
@@ -9,7 +9,7 @@ import Navigation from "../../components/Navigation"
 export default {
   data(){
     return{
-
+      phone:'13027429808'
     }
   },
   components:{
@@ -17,6 +17,8 @@ export default {
   }
 }
 </script>
-<style scoped>
-
+<style scoped lang="scss">
+  .course{
+    padding-top: 1.066667rem;
+  }
 </style>

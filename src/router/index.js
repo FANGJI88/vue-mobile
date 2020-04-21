@@ -72,6 +72,18 @@ Vue.use(VueRouter)
     name: 'Menu',
     component: () => import(/* webpackChunkName: "about" */ '../components/Menu.vue')
   },
+  //商品 nav导航 组件
+  {
+    path: '/GoodsLeft',
+    name: 'GoodsLeft',
+    component: () => import(/* webpackChunkName: "about" */ '../components/GoodsLeft.vue')
+  },
+  //商品右边 对应左边type的 content组件
+  {
+    path: '/GoodContent',
+    name: 'GoodContent',
+    component: () => import(/* webpackChunkName: "about" */ '../components/GoodContent.vue')
+  },
 ]
 
 const router = new VueRouter({
