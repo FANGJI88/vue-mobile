@@ -1,7 +1,7 @@
 <template>
   <div class="Order">
     订单
-    <Menu current="2"></Menu>
+    <Menu :current="2" ></Menu>
   </div>
 </template>
 <script>

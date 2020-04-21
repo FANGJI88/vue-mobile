@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home/Home.vue'
 import { mapActions } from 'vuex'
-// import MyCenter from '../views/MyCenter/MyCenter.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -12,6 +11,20 @@ Vue.use(VueRouter)
     meta:{ title: '首页', needLogin: false},
     component: Home
   },
+  //商品列表
+  {
+    path: '/GoodsList',
+    name: 'GoodsList',
+    meta: { title: '商品', needLogin: true},
+    component: () => import(/* webpackChunkName: "about" */ '../views/Home/GoodsList.vue')
+  },
+  //课程
+  {
+    path: '/CourseList',
+    name: 'CourseList',
+    meta: { title: '课程', needLogin: true},
+    component: () => import(/* webpackChunkName: "about" */ '../views/Home/CourseList.vue')
+  },
   //我的
   {
     path: '/MyCenter',
@@ -19,12 +32,20 @@ Vue.use(VueRouter)
     meta: { title: '我的', needLogin: true},
     component: () => import(/* webpackChunkName: "about" */ '../views/MyCenter/MyCenter.vue')
   },
+  
   //发现
   {
     path: '/Find',
     name: 'Find',
     meta: { title: '发现', needLogin: false},
     component: () => import(/* webpackChunkName: "about" */ '../views/Find/FindIndex.vue')
+  },
+  //新闻
+  {
+    path: '/NewsList',
+    name: 'NewsList',
+    meta: { title: '发现', needLogin: false},
+    component: () => import(/* webpackChunkName: "about" */ '../views/Find/NewsList.vue')
   },
   //订单
   {

@@ -1,7 +1,7 @@
 <template>
   <div class="Find">
     发现
-    <Menu current="1"></Menu>
+    <Menu :current="1" ></Menu>
   </div>
 </template>
 <script>

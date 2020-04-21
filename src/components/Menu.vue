@@ -1,8 +1,8 @@
 <template>
   <div class="menu pof flex">
     <div class="wrap flex"  v-for="(item,index) in nav" :key="index" @click="selecNav(index,item)">
-      <img :src="current==index? item.delect :item.defaule" alt="">
-      <span :class="{'active': current == index}">{{item.navTitle}}</span>
+      <img :src="idx==index? item.delect :item.defaule" alt="">
+      <span :class="{'active': idx == index}">{{item.navTitle}}</span>
     </div>
   </div>
 </template>
@@ -10,6 +10,7 @@
 export default {
   data(){
     return{
+      idx: this.current,
       nav:[
         {
           defaule: '/static/image/home/home_index_1.png',
@@ -40,17 +41,17 @@ export default {
   },
   methods:{
     selecNav(index,item){
-      if(this.current != index){
-        this.current = index
+      if(this.idx != index){
+        this.idx = index
         this.$router.push(item.router)
       }
     }
   },
+  computed:{
+    
+  },
   props:{
-    current:{
-      type: Number,
-      defaule: 0
-    }
+    current:  Number
   }
 }
 </script>
