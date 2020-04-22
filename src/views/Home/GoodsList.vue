@@ -3,12 +3,12 @@
     <Navigation title="商品"></Navigation>
     <div class="main flex">
       <div class="left">
-        <GoodsLeft></GoodsLeft>
+        <GoodsLeft @type="childVal"></GoodsLeft>
       </div>
       <div class="right">
-        <div class="right_top"><img src="/static/image/home/slt.png" alt=""> </div>
+        <div class="right_top"><img src="/static/image/home/slt.png" alt=""></div>
         <div class="right_content">
-          <GoodsContent></GoodsContent>
+          <GoodsContent :current ="index"></GoodsContent>
         </div>
       </div>
     </div>
@@ -19,6 +19,16 @@ import Navigation from "../../components/Navigation"
 import GoodsLeft from "../../components/GoodsLeft"
 import GoodsContent from "../../components/GoodContent"
 export default {
+  data(){
+    return{
+      index: '0'
+    }
+  },
+  methods:{
+    childVal(val){
+      this.index = val;
+    }
+  },
   components:{
     Navigation,
     GoodsLeft,
@@ -55,7 +65,7 @@ export default {
         .right_content{
           width: 100%;
           height: 3.733333rem;
-          border: coral 1px dashed;
+          border: #ddd 1px dashed;
         }
       }
     }

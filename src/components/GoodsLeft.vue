@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import brother from '../brother'
+// import brother from '../brother'
 export default {
   data(){
     return{
@@ -15,12 +15,12 @@ export default {
     }
   },
   mounted(){
-    brother.$emit('type','0')
+    this.$emit('type','0')
   },
   methods:{
     chooseType(index){
-      this.current = index
-      brother.$emit('type',index)
+      this.current = index 
+      this.$emit('type',String(index))
     }
   }
 }
