@@ -9,7 +9,7 @@ export default {
   data(){
     return{
       content: '这是手机内容',
-      index: '0'
+      // index: '0'
     }
   },
   // created(){
@@ -17,11 +17,8 @@ export default {
   // },
   watch:{
     current:function(newVal,oldVal){
-      this.index = newVal
+      // this.index = newVal
       switch (this.current) {
-        case '0':
-          this.content = '这是手机内容'
-          break;
         case '1':
           this.content = '这是手机内容'
           break;
@@ -40,6 +37,9 @@ export default {
         case '6':
           this.content = '这是电磁炉内容'
           break;
+        default:
+          this.content = '这是手机内容'
+          break; 
       }
     }
   },

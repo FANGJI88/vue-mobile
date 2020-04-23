@@ -25,6 +25,13 @@ Vue.use(VueRouter)
     meta: { title: '课程', needLogin: true},
     component: () => import(/* webpackChunkName: "about" */ '../views/Home/CourseList.vue')
   },
+  //课程详情
+  {
+    path: '/CourseDtail',
+    name: 'CourseDtail',
+    meta: { title: '课程', needLogin: true},
+    component: () => import(/* webpackChunkName: "about" */ '../views/Home/CourseDtail.vue')
+  },
   //我的
   {
     path: '/MyCenter',
