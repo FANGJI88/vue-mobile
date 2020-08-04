@@ -12,5 +12,8 @@
 }
 body{
   margin: 0;
+  background-color: #f8f8f8;
+	width: 100%;
+  min-height: 100vh;
 }
 </style>

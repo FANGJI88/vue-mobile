@@ -37,6 +37,13 @@ export default {
 </script>
 <style scoped lang='scss'>
   .Login{
+    input{
+      width: 200px;
+      height: 60px;
+      line-height: 60px;
+      margin-bottom: 20px;
+      border:1px solid slategrey;
+    }
     .btn{
       width: 60px;
       height: 30px;
