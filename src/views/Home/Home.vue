@@ -1,8 +1,15 @@
 <template>
   <div class="home">
     <!-- banner -->
-    <div class="banner">
-      <img src="/static/image/banner/5.jpg" alt />
+    <div class="banner por">
+      <div class="img-wrap">
+        <img class="" :class="{'active': index == 0}" v-for="(item,index) in 3" :key="index" :src="`/static/image/banner/${index+2}.jpg`" alt />
+      </div>
+      <div class="dit poa">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
     <div class="floor flex">
       <div @click="newsList">新闻</div>
@@ -65,9 +72,39 @@ export default {
     width: 100%;
     height: 300px;
     margin-bottom: 30px;
-    > img {
-      width: 100%;
+    overflow: hidden;
+    .img-wrap{
+      width: auto;
       height: 100%;
+      overflow-x: auto;
+      > img {
+      width: 750px;
+      height: 100%;
+      display: inline-block;
+    }
+    }
+    
+
+    .dit{
+      width: 750px;
+      top:none;
+      bottom: 20px;
+      left: calc(750px/2);
+      transform: translate(calc(-(750px/2)),0);
+      span{
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: slategray;
+        margin-right: 20px;
+        &:last-of-type{
+          margin-right: 0;
+        }
+        &.active{
+          background-color: #fff;
+        }
+      }
     }
   }
   .floor {
