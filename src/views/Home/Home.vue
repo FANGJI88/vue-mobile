@@ -2,14 +2,11 @@
   <div class="home">
     <!-- banner -->
     <div class="banner por">
-      <div class="img-wrap">
-        <img class="" :class="{'active': index == 0}" v-for="(item,index) in 3" :key="index" :src="`/static/image/banner/${index+2}.jpg`" alt />
-      </div>
-      <div class="dit poa">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <van-swipe :autoplay="3000">
+        <van-swipe-item v-for="(image, index) in images" :key="index">
+          <img :src="image" />
+        </van-swipe-item>
+      </van-swipe>
     </div>
     <div class="floor flex">
       <div @click="newsList">新闻</div>
@@ -17,19 +14,7 @@
       <div @click="courseList">课程</div>
       <div>其他</div>
     </div>
-    <div class="news flex">
-      <img src="/static/image/home/hdxq_hdxq_icon.png" alt />
-      <span>新闻公告</span>
-    </div>
-    <div class="news flex">
-      <img src="/static/image/home/hdxq_hdxq_icon.png" alt />
-      <span>新闻公告</span>
-    </div>
-    <div class="news flex">
-      <img src="/static/image/home/hdxq_hdxq_icon.png" alt />
-      <span>新闻公告</span>
-    </div>
-    <div class="news flex">
+    <div class="news flex" v-for="(item, index) in 3" :key="index">
       <img src="/static/image/home/hdxq_hdxq_icon.png" alt />
       <span>新闻公告</span>
     </div>
@@ -41,11 +26,18 @@
 
 <script>
 import Menu from "../../components/Menu";
-// import Navigation from "../../components/Navigation"
+
 export default {
   name: "Home",
   data() {
-    return {};
+    return {
+      images: [
+        `/static/image/banner/2.jpg`,
+        "/static/image/banner/2.jpg",
+        "/static/image/banner/3.jpg",
+        "/static/image/banner/4.jpg",
+      ],
+    };
   },
   methods: {
     newsList() {
@@ -56,11 +48,11 @@ export default {
     },
     courseList() {
       this.$router.push("/CourseList");
-    }
+    },
   },
   components: {
-    Menu
-  }
+    Menu,
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -68,43 +60,17 @@ export default {
   height: 100%;
   color: #000;
   font-size: 0.346667rem;
+
   .banner {
     width: 100%;
-    height: 300px;
+    height: 400px;
     margin-bottom: 30px;
     overflow: hidden;
-    .img-wrap{
-      width: auto;
-      height: 100%;
-      overflow-x: auto;
-      > img {
+    img {
       width: 750px;
-      height: 100%;
+      height: 400px;
       display: inline-block;
-    }
-    }
-    
-
-    .dit{
-      width: 750px;
-      top:none;
-      bottom: 20px;
-      left: calc(750px/2);
-      transform: translate(calc(-(750px/2)),0);
-      span{
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background-color: slategray;
-        margin-right: 20px;
-        &:last-of-type{
-          margin-right: 0;
-        }
-        &.active{
-          background-color: #fff;
-        }
-      }
+      object-fit: cover;
     }
   }
   .floor {
@@ -112,6 +78,7 @@ export default {
     justify-content: space-around;
     width: 100%;
     padding: 0.266667rem 0.4rem;
+
     div {
       width: 1.6rem;
       height: 1.6rem;
@@ -129,6 +96,7 @@ export default {
     height: 1.066667rem;
     background-color: #fff;
     padding: 0 0.4rem;
+
     img {
       width: 0.506667rem;
       height: 0.493333rem;
