@@ -1,38 +1,31 @@
 <template>
   <div class="myCenter">
-    <button @click="add">点我</button><span>count:{{this.$store.state.count}}</span>
-   
-    <Menu :current="3" ></Menu>
+    <button @click="add">点我</button
+    ><span>count:{{ this.$store.state.count }}</span>
   </div>
 </template>
 <script>
-import Menu from "../../components/Menu"
 export default {
-  data(){
-    return{
+  data() {
+    return {
       count: this.$store.state.count,
-    }
+    };
   },
-  mounted(){
-    
+  mounted() {},
+  methods: {
+    add() {
+      this.$store.commit("addCount", 10);
+    },
   },
-  methods:{
-   add(){
-    this.$store.commit('addCount',10)
-   }
-  },
-  components:{
-    Menu
-  }
-}
+  components: {},
+};
 </script>
 <style scoped lang="scss">
-  .myCenter{
-    padding: .4rem;
-    font-size: .4rem;
-    button{
-      margin-right: .133333rem;
-    }
-   
+.myCenter {
+  padding: 0.4rem;
+  font-size: 0.4rem;
+  button {
+    margin-right: 0.133333rem;
   }
+}
 </style>

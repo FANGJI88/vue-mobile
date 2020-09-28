@@ -18,15 +18,10 @@
       <img src="/static/image/home/hdxq_hdxq_icon.png" alt />
       <span>新闻公告</span>
     </div>
-
-    <!-- 底部导航 -->
-    <Menu :current="0"></Menu>
   </div>
 </template>
 
 <script>
-import Menu from "../../components/Menu";
-
 export default {
   name: "Home",
   data() {
@@ -50,9 +45,7 @@ export default {
       this.$router.push("/CourseList");
     },
   },
-  components: {
-    Menu,
-  },
+  components: {},
 };
 </script>
 <style scoped lang="scss">

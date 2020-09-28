@@ -1,13 +1,15 @@
 <template>
-  <div class="menu pof flex">
+  <div class="menu pof flex" v-show="is_footer">
     <div
       class="wrap flex"
       v-for="(item, index) in nav"
       :key="index"
-      @click="selecNav(index, item)"
+      @click="$router.push(item.router)"
     >
-      <img :src="idx == index ? item.delect : item.defaule" alt="" />
-      <span :class="{ active: idx == index }">{{ item.navTitle }}</span>
+      <img :src="$route.path === item.router ? item.delect : item.defaule" />
+      <span :class="{ active: $route.path === item.router }">{{
+        item.navTitle
+      }}</span>
     </div>
   </div>
 </template>
@@ -15,7 +17,10 @@
 export default {
   data() {
     return {
-      idx: this.current,
+      // 是否展示底部导航
+      is_footer: true,
+
+      // 导航菜单
       nav: [
         {
           defaule: "/static/image/home/home_index_1.png",
@@ -46,15 +51,28 @@ export default {
   },
   methods: {
     selecNav(index, item) {
-      if (this.idx != index) {
-        this.idx = index;
-        this.$router.push(item.router);
-      }
+      this.$router.push(item.router);
     },
   },
   computed: {},
   props: {
-    current: Number,
+    // current: Number,
+  },
+  watch: {
+    $route(to) {
+      this.nav.forEach((el) => {
+        console.log(to.path);
+        // console.log(el.router);
+        // console.log(el.router === to.path);
+        if (to.path === el.router) {
+          this.is_footer = true;
+        } else {
+          this.is_footer = false;
+        }
+        // this.is_footer = to.path === el.router;
+      });
+      console.log(to);
+    },
   },
 };
 </script>

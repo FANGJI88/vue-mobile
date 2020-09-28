@@ -21,12 +21,9 @@
       >
       </vue-baberrage>
     </div>
-
-    <Menu :current="1"></Menu>
   </div>
 </template>
 <script>
-import Menu from "../../components/Menu";
 import { MESSAGE_TYPE } from "vue-baberrage";
 
 export default {
@@ -68,9 +65,7 @@ export default {
       barrageList: [],
     };
   },
-  components: {
-    Menu,
-  },
+  components: {},
   methods: {
     onPlayerPlay(e) {},
 
