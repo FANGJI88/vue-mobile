@@ -8,13 +8,15 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+    <!-- menu分类 -->
     <div class="floor flex">
-      <div @click="newsList">新闻</div>
-      <div @click="goodsList">商品</div>
-      <div @click="courseList">课程</div>
+      <div @click="$router.push('/NewsList')">新闻</div>
+      <div @click="$router.push('/GoodsList')">商品</div>
+      <div @click="$router.push('/CourseList')">课程</div>
       <div>其他</div>
     </div>
-    <div class="news flex" v-for="(item, index) in 3" :key="index">
+    <!-- 公告占位符 -->
+    <div class="news flex" v-for="(item, index) in 13" :key="index">
       <img src="/static/image/home/hdxq_hdxq_icon.png" alt />
       <span>新闻公告</span>
     </div>
@@ -34,17 +36,7 @@ export default {
       ],
     };
   },
-  methods: {
-    newsList() {
-      this.$router.push("/NewsList");
-    },
-    goodsList() {
-      this.$router.push("/GoodsList");
-    },
-    courseList() {
-      this.$router.push("/CourseList");
-    },
-  },
+  methods: {},
   components: {},
 };
 </script>

@@ -21,6 +21,10 @@ import "videojs-contrib-hls"; //单是 RTMP 的话不需要第三方库，如果
 import { vueBaberrage } from "vue-baberrage";
 Vue.use(vueBaberrage);
 
+// 全局混入
+import mixins from "./mixins/index";
+Vue.mixin(mixins);
+
 require("video.js/dist/video-js.css");
 require("vue-video-player/src/custom-theme.css");
 

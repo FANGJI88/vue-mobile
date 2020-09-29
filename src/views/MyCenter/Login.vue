@@ -1,7 +1,7 @@
 <template>
   <div class="Login">
-    <input />用户名：<input type="text" v-model="userName" />
-    <input />密码：<input type="password" v-model="password" />
+    <div>用户名：<input type="text" v-model="userName" /></div>
+    <div>密码：<input type="password" v-model="password" /></div>
     <p class="btn" @click="Login">登陆</p>
   </div>
 </template>
@@ -42,22 +42,32 @@ export default {
 </script>
 <style scoped lang="scss">
 .Login {
-  input {
-    width: 200px;
-    height: 60px;
-    line-height: 60px;
-    margin-bottom: 20px;
-    border: 1px solid slategrey;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 0 0 30px;
+
+  > div {
+    input {
+      width: 400px;
+      height: 60px;
+      line-height: 60px;
+      margin-bottom: 20px;
+      border: 1px solid slategrey;
+      margin-top: 20px;
+      text-align: center;
+    }
   }
+
   .btn {
-    width: 60px;
-    height: 30px;
+    width: 200px;
+    height: 50px;
     text-align: center;
-    line-height: 30px;
-    border: 1px solid steelblue;
+    line-height: 50px;
+    border: 2px solid steelblue;
     border-radius: 10px;
     color: steelblue;
     margin: 0 auto;
+    margin-top: 30px;
   }
 }
 </style>
