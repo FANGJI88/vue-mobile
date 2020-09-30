@@ -50,5 +50,6 @@ body {
   background-color: #f8f8f8;
   width: 100%;
   min-height: 100vh;
+  position: relative;
 }
 </style>
