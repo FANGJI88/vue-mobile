@@ -13,14 +13,15 @@
       </video-player>
 
       <!-- 弹屏幕 -->
-      <vue-baberrage
+      <!-- <vue-baberrage
         class="baberrage"
         :isShow="barrageIsShow"
         :barrageList="barrageList"
         :loop="barrageLoop"
       >
-      </vue-baberrage>
+      </vue-baberrage> -->
     </div>
+    <p @click="$router.push('/Live')">腾讯云H5直播demo</p>
   </div>
 </template>
 <script>
@@ -142,6 +143,17 @@ export default {
         z-index: 3;
       }
     }
+  }
+  p {
+    margin: 0 auto;
+    margin-top: 100px;
+    height: 100px;
+    width: 300px;
+    border: 1px salmon solid;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 100px;
+    text-align: center;
   }
 }
 </style>

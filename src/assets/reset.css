@@ -93,3 +93,13 @@ ol {
 .van-swipe__indicator--active {
   background-color: #fff !important;
 }
+
+#count {
+  color: red;
+  font-size: 36px;
+  position: absolute;
+  font-weight: 600;
+  z-index: 10;
+  /* 控制动画  */
+  transition: all 1.5s;
+}

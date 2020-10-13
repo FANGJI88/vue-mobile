@@ -11,19 +11,27 @@
     </div>
 
     <p class="point" @click="onLike">点我</p>
+
+    <p class="popup" @click="isPopup = true">弹窗</p>
+
+    <Popup :isPopup="isPopup" :showCancelButton="true"></Popup>
   </div>
 </template>
 <script>
 import Navigation from "../../components/Navigation";
+import Popup from "../../components/popup/popup";
+
 export default {
   data() {
     return {
       phone: "13027429808",
       result: "",
+      isPopup: false,
     };
   },
   components: {
     Navigation,
+    Popup,
   },
   methods: {
     //每个Touch对象包含的属性如下。
@@ -92,22 +100,19 @@ export default {
         div.id = "count";
         div.innerHTML = "+1";
 
-        div.style.top = `${pageY}px`;
+        div.style.top = `${pageY - 20}px`;
         div.style.left = `${pagex}px`;
+
         body.appendChild(div);
 
-        console.log(div);
-
         setTimeout(() => {
-          div.style.top = `${pageY - 120}  px`;
-          div.style.opacity = 1;
+          div.style.top = `${pageY - 120}px`;
+          div.style.opacity = 0;
 
           setTimeout(() => {
             body.removeChild(div);
-          }, 300);
-        }, 1500);
-
-        // console.log(body, div);
+          }, 1500);
+        });
       });
     },
   },
@@ -149,25 +154,24 @@ export default {
     line-height: 600px;
   }
 
-  .point {
+  p {
     width: 300px;
     height: 80px;
     background-color: coral;
     color: #ffffff;
     font-size: 36px;
-    transition: 3s all linear;
     margin: 300px auto 0;
     border-radius: 30px;
     text-align: center;
     line-height: 80px;
     font-weight: 600;
-  }
 
-  #count {
-    color: coral;
-    font-size: 26px;
-    position: absolute;
-    z-index: 10;
+    &:first-of-type {
+      margin-bottom: 100px;
+    }
+  }
+  .popup {
+    margin-top: 0;
   }
 }
 </style>

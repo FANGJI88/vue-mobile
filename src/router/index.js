@@ -52,6 +52,14 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Find/FindIndex.vue"),
   },
+  //直播
+  {
+    path: "/Live",
+    name: "Live",
+    meta: { title: "腾讯云直播h5", needLogin: false },
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Find/Live.vue"),
+  },
   //新闻
   {
     path: "/NewsList",
