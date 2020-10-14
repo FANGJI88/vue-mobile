@@ -14,7 +14,19 @@
 
     <p class="popup" @click="isPopup = true">弹窗</p>
 
-    <Popup :isPopup="isPopup" :showCancelButton="true"></Popup>
+    <Popup
+      ref="aaa"
+      v-model="isPopup"
+      :showCancelButton="true"
+      @cancel="cancel"
+      @confirm="confirm"
+      :closeOnClickOverlay="true"
+    >
+      <div>
+        这是slot的内容
+        <img src="../../../public/static/image/banner/3.jpg" alt="" />
+      </div>
+    </Popup>
   </div>
 </template>
 <script>
@@ -34,6 +46,16 @@ export default {
     Popup,
   },
   methods: {
+    cancel() {
+      console.log("取消了");
+      this.isPopup = false;
+    },
+
+    confirm() {
+      console.log("确认");
+      this.isPopup = false;
+    },
+
     //每个Touch对象包含的属性如下。
     //clientX：触摸目标在视口中的x坐标。
     // clientY：触摸目标在视口中的y坐标。
@@ -121,6 +143,16 @@ export default {
       let bodyElement = this.$refs.NewsList;
       this.touch(bodyElement);
     });
+  },
+
+  watch: {
+    // isPopup(val) {
+    //   if (val === true) {
+    //     console.log(this.$children[1].$refs);
+    //     // let dialog = this.$refs.aaa.$refs.dialog;
+    //     // console.log(dialog, 1111111);
+    //   }
+    // },
   },
 };
 </script>

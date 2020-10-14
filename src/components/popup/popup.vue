@@ -1,33 +1,44 @@
 <template>
-  <div class="popup" v-if="isPopup">
-    <div class="wrap">
-      <!-- 标题 -->
-      <div class="title">{{ title }}</div>
-      <!-- 内容 -->
-      <div class="content">{{ content }}</div>
-      <div class="btn">
-        <!-- 取消按钮 -->
-        <p
-          :style="{
-            width: showConfirmButton ? '50%' : '100%',
-            borderRight: showCancelButton ? '1px solid #f8f8f8' : '0',
-            color: cancelButtonColor,
-          }"
-          v-if="showCancelButton"
-        >
-          {{ cancelButtonText }}
-        </p>
+  <div class="wrap" v-if="isPopup">
+    <!-- 遮罩层 -->
+    <div class="popup" v-if="overlay" @click="close"></div>
 
-        <!-- 确认按钮 -->
-        <p
-          :style="{
-            width: showCancelButton ? '50%' : '100%',
-            color: confirmButtonColor,
-          }"
-          v-if="showConfirmButton"
-        >
-          {{ confirmButtonText }}
-        </p>
+    <!-- 弹窗 -->
+    <div class="dialog" ref="dialog" @mousedown="mousedown">
+      <div class="dialog-wrap">
+        <!-- 标题 -->
+        <div class="title">{{ title }}</div>
+        <!-- 内容 -->
+        <div class="content">
+          {{ content }}
+          <slot></slot>
+        </div>
+        <div class="btn">
+          <!-- 取消按钮 -->
+          <p
+            :style="{
+              width: showConfirmButton ? '50%' : '100%',
+              borderRight: showCancelButton ? '1px solid #f8f8f8' : '0',
+              color: cancelButtonColor,
+            }"
+            v-if="showCancelButton"
+            @click="cancel"
+          >
+            {{ cancelButtonText }}
+          </p>
+
+          <!-- 确认按钮 -->
+          <p
+            :style="{
+              width: showCancelButton ? '50%' : '100%',
+              color: confirmButtonColor,
+            }"
+            v-if="showConfirmButton"
+            @click="confirm"
+          >
+            {{ confirmButtonText }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -35,6 +46,12 @@
 
 <script>
 export default {
+  // 更改父组件的 isPopup 属性
+  model: {
+    prop: "isPopup",
+    event: "autoModel",
+  },
+
   props: {
     //弹窗显示与否
     isPopup: {
@@ -48,12 +65,6 @@ export default {
       default: "80%",
     },
 
-    // 弹窗高度
-    height: {
-      type: String,
-      default: "400px",
-    },
-
     // 标题
     title: {
       type: String,
@@ -63,7 +74,7 @@ export default {
     // 内容
     content: {
       type: String,
-      default: "默认内容...",
+      default: "",
     },
 
     // 是否展示确认按钮
@@ -101,16 +112,73 @@ export default {
       type: String,
       default: "#000",
     },
+
+    // 是否点击遮罩层后关闭弹窗
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: false,
+    },
+
+    overlay: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {};
   },
-  computed: {},
-  created() {},
-  mounted() {},
-  watch: {},
-  methods: {},
-  components: {},
+
+  methods: {
+    confirm() {
+      this.$emit("confirm");
+    },
+
+    cancel() {
+      // this._events.cancel 判断父组件 是否有自定义 事件 cansel
+      // 如果有，就回调一个方法，否则就默认关闭弹窗不进行操作
+
+      if (this._events.cancel) {
+        this.$emit("cancel");
+      } else {
+        this.$emit("autoModel", false);
+      }
+    },
+
+    close() {
+      if (this.closeOnClickOverlay) {
+        this.$emit("autoModel", false);
+      }
+    },
+
+    mousedown() {
+      // 判断设备时在 移动端还是pc端
+      // 方法定义在app;
+      if (!this._isMobile() && this.isPopup) {
+        // alert("pc端");
+
+        const dialog = this.$refs.dialog;
+        // console.log(dialog);
+        if (dialog) {
+          dialog.style.cursor = "move";
+
+          dialog.addEventListener("mousemove", (e) => {
+            console.log(e);
+            // dialog.style.left= e.
+          });
+
+          dialog.addEventListener("mouseup", () => {
+            dialog.removeEventListener("mousemove");
+            dialog.removeEventListener("mouseup");
+            dialog.style.cursor = "default";
+          });
+        }
+      }
+    },
+  },
+
+  mounted() {
+    this.$nextTick(() => {});
+  },
 };
 </script>
 

@@ -23,13 +23,23 @@ export default {
   components: {
     Menu,
   },
-  methods: {},
+  methods: {
+    mounted() {},
+  },
 
   // 显示底部导航的第二种写法
   watch: {
     $route(to) {
       this.isMenu = to.meta.is_footer === true;
     },
+
+    // _isMobile() {
+    //   if (this._isMobile()) {
+    //     alert("手机端");
+    //   } else {
+    //     alert("pc端");
+    //   }
+    // },
   },
 };
 </script>
