@@ -14,7 +14,7 @@ export default {
   mounted() {},
   methods: {
     add() {
-      this.$store.commit("addCount", 10);
+      this.$store.commit("changeData", ["count", 10]);
     },
   },
   components: {},

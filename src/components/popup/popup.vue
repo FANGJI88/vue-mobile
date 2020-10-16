@@ -4,8 +4,13 @@
     <div class="popup" v-if="overlay" @click="close"></div>
 
     <!-- 弹窗 -->
-    <div class="dialog" ref="dialog" @mousedown="mousedown">
-      <div class="dialog-wrap">
+    <div class="dialog">
+      <div
+        class="dialog-wrap"
+        ref="dialog"
+        @mousedown="mousedown"
+        draggable="true"
+      >
         <!-- 标题 -->
         <div class="title">{{ title }}</div>
         <!-- 内容 -->
@@ -46,6 +51,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isClick: false,
+    };
+  },
+
   // 更改父组件的 isPopup 属性
   model: {
     prop: "isPopup",
@@ -150,7 +161,9 @@ export default {
       }
     },
 
-    mousedown() {
+    mousedown(e) {
+      this.isClick = true;
+
       // 判断设备时在 移动端还是pc端
       // 方法定义在app;
       if (!this._isMobile() && this.isPopup) {
@@ -161,14 +174,23 @@ export default {
         if (dialog) {
           dialog.style.cursor = "move";
 
+          let x = e.clientX,
+            y = e.clientY,
+            offserLeft = e.offsetLeft,
+            offserTop = e.offsetTop;
+
           dialog.addEventListener("mousemove", (e) => {
-            console.log(e);
-            // dialog.style.left= e.
+            let clientX = e.clientX,
+              clientY = e.clientY;
+
+            if (this.isClick == true) {
+              dialog.style.left = clientX - (x - offserLeft) + "px";
+              dialog.style.left = clientY - (y - offserTop) + "px";
+            }
           });
 
           dialog.addEventListener("mouseup", () => {
-            dialog.removeEventListener("mousemove");
-            dialog.removeEventListener("mouseup");
+            this.isClick = false;
             dialog.style.cursor = "default";
           });
         }
